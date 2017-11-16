@@ -24,12 +24,21 @@
     <ClCompile Include="Net.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DataLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Neuron.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Net.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="json.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DataLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

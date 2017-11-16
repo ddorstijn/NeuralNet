@@ -151,11 +151,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DataLoader.cpp" />
     <ClCompile Include="Net.cpp" />
     <ClCompile Include="NeuralNet.cpp" />
     <ClCompile Include="Neuron.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DataLoader.h" />
+    <ClInclude Include="json.hpp" />
     <ClInclude Include="Net.hpp" />
     <ClInclude Include="Neuron.hpp" />
   </ItemGroup>
