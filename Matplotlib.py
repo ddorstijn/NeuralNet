@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import json
-import numpy as np
 
 # image_name = "C:/Users/Danny/Downloads/__output/neutral/Cutout-Man-in-Suit2.png"
 
@@ -83,31 +82,34 @@ import numpy as np
 # 0.121047019958496,
 # -0.840612828731537]
 
-dataArray = json.load(open('file.json'));
+dataArray = json.load(open('file.json'))
 
-for data in np.nditer(dataArray):
-    print(data);
+for i in range(0, len(dataArray) - 1):
+    data = dataArray[i];
+    # print(data['pose'])
+    # print("\n");
 
+data1 = dataArray[20]['pose']
 
-# datax = []
-# datay = []
+datax = []
+datay = []
 
-# for idx, val in enumerate(data1):
-#     if idx % 2 == 0:
-#         datax.append(val)
-#     else:
-#         datay.append(val)
+for idx, val in enumerate(data1):
+    if idx % 2 == 0:
+        datax.append(val)
+    else:
+        datay.append(val)
 
-# print(datax)
-# print(datay)
+print(datax)
+print(datay)
 
 # # put a red dot, size 40, at 2 locations:
 # #plt.scatter(x=data_x1, y=data_y1, c='r', s=40)
 
-# plt.scatter(x=datax, y=datay, c='g', s=40)
-# plt.gca().invert_yaxis()
-# plt.xlim(-1,1)
-# plt.autoscale(False)
+plt.scatter(x=datax, y=datay, c='g', s=40)
+plt.gca().invert_yaxis()
+plt.xlim(-1,1)
+plt.autoscale(False)
 
 
-# plt.show()
+plt.show()
