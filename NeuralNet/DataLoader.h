@@ -17,6 +17,7 @@ public:
 	DataLoader();
 	~DataLoader();
 	file LoadRandom();
+	vector<vector<int>> GetTopology();
 	vector<string> outputs;
 private:
 	void throughDirs();

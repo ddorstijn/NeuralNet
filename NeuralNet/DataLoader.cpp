@@ -95,3 +95,10 @@ file DataLoader::LoadRandom()
 	}
 	return f;
 }
+
+std::vector<std::vector<int>> DataLoader::GetTopology()
+{
+	std::vector<std::vector<int>> topology;
+	throw exception("loading failed");
+	return topology;
+}

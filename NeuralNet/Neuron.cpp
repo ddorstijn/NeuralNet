@@ -81,11 +81,11 @@ void Neuron::feedForward(const Layer &prevLayer)
     outputVal = Neuron::transferFunction(sum);
 }
 
-Neuron::Neuron(unsigned numOutputs, unsigned index)
+Neuron::Neuron(unsigned numOutputs, unsigned index, int weight)
 {
     for (unsigned c = 0; c < numOutputs; ++c) {
         outputWeights.push_back(Connection());
-        outputWeights.back().weight = randomWeight();
+        outputWeights.back().weight = weight;
     }
 
     myIndex = index;
