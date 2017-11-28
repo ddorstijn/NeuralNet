@@ -18,7 +18,7 @@ void DataLoader::throughDirs() {
 
 	if (hFind != INVALID_HANDLE_VALUE) {
 		do {
-			if (i++ < 2) { continue; } // skip . and .. dictionaries :/
+			if (++i <= 2) { continue; } // skip . and .. dictionaries :/
 			if (data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
 				wstring fName(data.cFileName);
 				string foldername(fName.begin(), fName.end());
@@ -77,6 +77,7 @@ json DataLoader::RandomFile(string folder)
 	buffer << t.rdbuf();
 	json j = json::parse(buffer.str());
 	j["filepath"] = randomfile;
+	t.close();
 	return j;
 }
 
@@ -96,9 +97,24 @@ file DataLoader::LoadRandom()
 	return f;
 }
 
-std::vector<std::vector<int>> DataLoader::GetTopology()
+vector<vector<int>> DataLoader::GetTopology()
 {
-	std::vector<std::vector<int>> topology;
-	throw exception("loading failed");
-	return topology;
+	vector<vector<int>> topology;
+	ifstream file(rootpath + L"topology.json");
+	if (!file.good()) {
+		throw exception("loading failed");
+	}
+	stringstream buffer;
+	buffer << file.rdbuf();
+	json j = json::parse(buffer.str());
+	file.close();
+	return j;
+}
+
+void DataLoader::SaveTopology(vector<vector<int>> topology) 
+{
+	json j = topology;
+	ofstream file(rootpath + L"topology.json");
+	file << j.dump();
+	file.close();
 }
