@@ -6,14 +6,14 @@ typedef std::vector<class Neuron> Layer;
 
 struct Connection
 {
-    double weight;
+    double* weight;
     double deltaWeight;
 };
 
 class Neuron
 {
 public:
-    Neuron(unsigned numOutputs, unsigned index, int weight);
+    Neuron(unsigned numOutputs, unsigned index, double* weight);
     void setOutputVal(double val) { outputVal = val; }
     double getOutputVal(void) const { return outputVal; }
     void feedForward(const Layer &prevLayer);

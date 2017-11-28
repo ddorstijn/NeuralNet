@@ -97,9 +97,9 @@ file DataLoader::LoadRandom()
 	return f;
 }
 
-vector<vector<int>> DataLoader::GetTopology()
+vector<vector<double>> DataLoader::GetTopology()
 {
-	vector<vector<int>> topology;
+	vector<vector<double>> topology;
 	ifstream file(rootpath + L"topology.json");
 	if (!file.good()) {
 		throw exception("loading failed");
@@ -111,10 +111,10 @@ vector<vector<int>> DataLoader::GetTopology()
 	return j;
 }
 
-void DataLoader::SaveTopology(vector<vector<int>> topology) 
+void DataLoader::SaveTopology(vector<vector<double>> topology, wstring filename)
 {
 	json j = topology;
-	ofstream file(rootpath + L"topology.json");
+	ofstream file(rootpath + filename);
 	file << j.dump();
 	file.close();
 }
