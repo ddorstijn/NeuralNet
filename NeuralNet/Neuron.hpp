@@ -6,14 +6,14 @@ typedef std::vector<class Neuron> Layer;
 
 struct Connection
 {
-    double weight;
+    double* weight;
     double deltaWeight;
 };
 
 class Neuron
 {
 public:
-    Neuron(unsigned numOutputs, unsigned index);
+    Neuron(unsigned numOutputs, unsigned index, double* weight);
     void setOutputVal(double val) { outputVal = val; }
     double getOutputVal(void) const { return outputVal; }
     void feedForward(const Layer &prevLayer);
@@ -26,7 +26,7 @@ private:
     static double alpha; // [0.0..n] multiplier of last weight change (momentum)
     static double transferFunction(double x);
     static double transferFunctionDerivative(double x);
-    static double randomWeight(void) { return rand() / double(RAND_MAX); }
+    // static double randomWeight(void) { return rand() / double(RAND_MAX); }
     double sumDOW(const Layer &nextLayer) const;
     double outputVal;
     std::vector<Connection> outputWeights;

@@ -83,21 +83,22 @@ void Net::feedForward(const std::vector<double> &inputVals)
     }
 }
 
-Net::Net(const std::vector<unsigned> &topology)
+Net::Net(const std::vector<std::vector<double>> &topology)
 {
     unsigned numLayers = topology.size();
     for (unsigned layerNum = 0; layerNum < numLayers; ++layerNum) {
         layers.push_back(Layer());
-        unsigned numOutputs = layerNum == topology.size() - 1 ? 0 : topology[layerNum + 1];
+        unsigned numOutputs = layerNum == topology.size() - 1 ? 0 : topology[layerNum + 1].size();
 
         // We have a new layer, now fill it with neurons, and
         // add a bias neuron in each layer.
-        for (unsigned neuronNum = 0; neuronNum <= topology[layerNum]; ++neuronNum) {
-            layers.back().push_back(Neuron(numOutputs, neuronNum));
+        for (unsigned neuronNum = 0; neuronNum <= topology[layerNum].size(); ++neuronNum) {
+			double weight = neuronNum >= topology[layerNum].size() ? 1 : topology[layerNum][neuronNum];
+            layers.back().push_back(Neuron(numOutputs, neuronNum, &weight));
             std::cout << "Made a Neuron!" << std::endl;
         }
 
         // Force the bias node's output to 1.0 (it was the last neuron pushed in this layer):
-        layers.back().back().setOutputVal(1.0);
+        // layers.back().back().setOutputVal(1.0);
     }
 }

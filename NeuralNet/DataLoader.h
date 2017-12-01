@@ -17,6 +17,8 @@ public:
 	DataLoader();
 	~DataLoader();
 	file LoadRandom();
+	vector<vector<double>> GetTopology();
+	void SaveTopology(vector<vector<double>> topology, wstring filename = L"topology.json");
 	vector<string> outputs;
 private:
 	void throughDirs();
