@@ -1,4 +1,4 @@
-Boredom
+Boredom - V
 |
 |   Upperbody collpsed  Head bacward   Low movement activity | - ftp://pop3.infomus.org/pub/PPM/Publications/Wallbott,%201998,%20bodiliy%20espression%20of%20emotion.pdf Tabel 5
 |
@@ -8,7 +8,7 @@ Boredom
 |   Collapsed posture   Head backward   Not facing artwork | - https://books.google.nl/books?hl=nl&lr=&id=w6siBQAAQBAJ&oi=fnd&pg=PA273&dq=emotion+from+posture&ots=HLcoyOajPI&sig=xw9HK8s4F9nAS_76-if8fRGgB08#v=onepage&q&f=false
 |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-Disgust
+Disgust - V
 |
 |   Upperbody Collapsed     Shoulders backward or forward   Head downward   Arms crossed in front of chest  Inexpansive movements
 |
@@ -19,7 +19,7 @@ Disgust
 |   Arms crossed + Hand on chin     Hands near neck, constrained    | - http://dm.ncl.ac.uk/edmundnesveda/files/2015/06/posture-combination.png
 |_ _ _ _ _ _ _ __ _ _ _ __ _ _ __ _ _ __ _ _ __ _ _ __ _ _ __ _ _ __ _ _ __ _ _ _
 
-Anger
+Anger - V
 |
 |   Shoulders upd   Strechted out in the front of the body  Use of one hand exstensively pointing, opening/closing, back of hands sideways, many illustrators
 |
@@ -30,7 +30,7 @@ Anger
 |   Hand on chin + arms crossed     Foot forward + Hand on chin + Limbs constrained     Arms crossed + Hand near hip
 |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-Joy
+Joy - V
 |
 |   Shoulders up    Head backward    Arms streched out frontal or upward    Opening closing, very illistrative      High movement dynamics
 |
@@ -41,7 +41,7 @@ Joy
 |   Foot forward + Lean sideward    Lean forward + Lean sideward + Foot forward
 |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-Sadness
+Sadness - V
 |
 |   Upper body Collapsed    Low movement activity
 |
@@ -50,7 +50,7 @@ Sadness
 |   Head forward    Chest forward   No abdominal twist  Arms at the side    collasped posture
 |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-Fear
+Fear - V
 |
 |   Hands Opening/closing, many selfmanipulators
 |
@@ -59,28 +59,28 @@ Fear
 |   Head beackward  no abdominal    arms raised forward     Shoulders forward
 |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-Neutral
+Neutral - V
 |
 |   Upperbody erect     Shoulders hanging   Towards artwork     Arms hanging    No hand activity
 |
 |   Legs crossed + Limbs contrained     Arms crossed + Lean sideward + limbs relaxed    Lean sideward + leg crossed + Hand on chin
 ||_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-Contempt
+Contempt - V
 |
 |   Low movement activity
 |
 |   Lifted chin     Pursed lips, sneering, slight frown   Circling a shoulder, stretching her neck, turning away    Grabbing her lapels, or tucking her thumbs in her waistcoat
 |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-Surprise
+Surprise - V
 |
 |   Head backward   chest backward  abdominal twist     arms raised with straight forearms
 |
 |   Slack   jawed, raised eyebrows, staring  Frozen, slack body language    Take a step back and put a hand to his heart
 |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-Interest
+Interest - V
 |
 |    Arms stretched out frontal     hands lateralized movements
 |

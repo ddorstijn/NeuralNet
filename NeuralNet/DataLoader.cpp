@@ -9,7 +9,7 @@
 #include <stdlib.h>
 using namespace std;
 
-const wstring rootpath = L"D:\\INC\\__output\\";
+const wstring rootpath = L"Data\\";
 
 void DataLoader::throughDirs() {
 	WIN32_FIND_DATA data;
