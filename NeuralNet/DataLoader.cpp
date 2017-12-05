@@ -7,9 +7,8 @@
 #include <iostream>
 #include <fstream>
 #include <stdlib.h>
-using namespace std;
 
-const wstring rootpath = L"Data\\";
+const std::wstring rootpath = L"Data\\";
 
 void DataLoader::throughDirs() {
 	WIN32_FIND_DATA data;
@@ -20,8 +19,8 @@ void DataLoader::throughDirs() {
 		do {
 			if (++i <= 2) { continue; } // skip . and .. dictionaries :/
 			if (data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
-				wstring fName(data.cFileName);
-				string foldername(fName.begin(), fName.end());
+				std::wstring fName(data.cFileName);
+				std::string foldername(fName.begin(), fName.end());
 				outputs.push_back(foldername);
 				/*foldername = foldername + "\\";
 				string folder = rootpath + foldername;*/
@@ -31,35 +30,24 @@ void DataLoader::throughDirs() {
 	}
 }
 
-DataLoader::DataLoader()
+std::vector<std::string> DataLoader::LoadFiles(std::string folder)
 {
-	this->throughDirs();
-	cout << "start" << endl;
-}
-
-
-DataLoader::~DataLoader()
-{
-}
-
-json DataLoader::RandomFile(string folder)
-{
-	wstring f(folder.begin(), folder.end());
-	wstring path = rootpath + f + L"\\";
+	std::wstring f(folder.begin(), folder.end());
+	std::wstring path = rootpath + f + L"\\";
 	WIN32_FIND_DATA data;
 	HANDLE hFind = FindFirstFile((path + L"*").c_str(), &data);      // DIRECTORY
 	int i = 0;
 
-	vector<string> files = vector<string>();
+	std::vector<std::string> files = std::vector<std::string>();
 
 	if (hFind != INVALID_HANDLE_VALUE) {
 		do {
 			if (i++ < 2) { continue; } // skip . and .. dictionaries :/
 			if (!(data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
-				wstring str = wstring(data.cFileName);
-				wstring fullpath = path + str;
-				string filepath(fullpath.begin(), fullpath.end());
-				string ext = filepath.substr(filepath.find_last_of("."));
+				std::wstring str = std::wstring(data.cFileName);
+				std::wstring fullpath = path + str;
+				std::string filepath(fullpath.begin(), fullpath.end());
+				std::string ext = filepath.substr(filepath.find_last_of("."));
 				if (ext == ".json") {
 					files.push_back(filepath);
 				}
@@ -68,12 +56,27 @@ json DataLoader::RandomFile(string folder)
 		} while (FindNextFile(hFind, &data));
 		FindClose(hFind);
 	}
-	/*for (int i = 0; i < files.size(); i++) {
-		cout << "FILE " << i << files.at(i) << endl;
-	}*/
-	string randomfile = files.at(rand() % files.size());
-	ifstream t(randomfile);
-	stringstream buffer;
+
+	return files;
+}
+
+DataLoader::DataLoader()
+{
+	this->throughDirs();
+	std::cout << "start" << std::endl;
+}
+
+
+DataLoader::~DataLoader()
+{
+}
+
+json DataLoader::RandomFile(std::string folder)
+{
+	std::vector<std::string> files = LoadFiles(folder);
+	std::string randomfile = files.at(rand() % files.size());
+	std::ifstream t(randomfile);
+	std::stringstream buffer;
 	buffer << t.rdbuf();
 	json j = json::parse(buffer.str());
 	j["filepath"] = randomfile;
@@ -82,14 +85,14 @@ json DataLoader::RandomFile(string folder)
 }
 
 file DataLoader::LoadRandom() 
-{
-	string folder = this->outputs.at(rand() % this->outputs.size());
-	cout << "random folder = " << folder << endl;
+{	
+	std::string folder = this->outputs.at(rand() % this->outputs.size());
+	std::cout << "random folder = " << folder << std::endl;
 	json j = this->RandomFile(folder);
 	file f{
-		j["label"].get<string>(),
-		vector<double>(),
-		j["filepath"].get<string>(),
+		j["label"].get<std::string>(),
+		std::vector<double>(),
+		j["filepath"].get<std::string>(),
 	};
 	for (json::iterator it = j["pose"].begin(); it != j["pose"].end(); ++it) {
 		f.pose.push_back(it->get<double>());
@@ -97,24 +100,62 @@ file DataLoader::LoadRandom()
 	return f;
 }
 
-vector<vector<double>> DataLoader::GetTopology()
+void DataLoader::Load(std::vector<file> &testSet, std::vector<file> &trainingSet)
 {
-	vector<vector<double>> topology;
-	ifstream file(rootpath + L"topology.json");
-	if (!file.good()) {
-		throw exception("loading failed");
+	std::vector<file> data;
+	for (std::vector<std::string>::iterator o_it = outputs.begin(); o_it != outputs.end(); ++o_it) {
+		auto files = LoadFiles(*o_it);
+		for (std::vector<std::string>::iterator f_it = files.begin(); f_it != files.end(); ++f_it) {
+			std::ifstream t(*f_it);
+			std::stringstream buffer;
+			buffer << t.rdbuf();
+			json j = json::parse(buffer.str());
+			j["filepath"] = *f_it;
+			t.close();
+
+			file f {
+				j["label"].get<std::string>(),
+				std::vector<double>(),
+				j["filepath"].get<std::string>(),
+			};
+			for (json::iterator it = j["pose"].begin(); it != j["pose"].end(); ++it) {
+				f.pose.push_back(it->get<double>());
+			}
+
+			data.push_back(f);
+		}
 	}
-	stringstream buffer;
+
+	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+	std::shuffle(data.begin(), data.end(), std::default_random_engine(seed));
+
+	for (unsigned i = 0; i < data.size(); i++) {
+		if (i % 2) {
+			trainingSet.push_back(data.at(i));
+		} else {
+			testSet.push_back(data.at(i));
+		}
+	}
+}
+
+std::vector<std::vector<double>> DataLoader::GetTopology()
+{
+	std::vector<std::vector<double>> topology;
+	std::ifstream file(rootpath + L"topology.json");
+	if (!file.good()) {
+		throw std::exception("loading failed");
+	}
+	std::stringstream buffer;
 	buffer << file.rdbuf();
 	json j = json::parse(buffer.str());
 	file.close();
 	return j;
 }
 
-void DataLoader::SaveTopology(vector<vector<double>> topology, wstring filename)
+void DataLoader::SaveTopology(std::vector<std::vector<double>> topology, std::wstring filename)
 {
 	json j = topology;
-	ofstream file(rootpath + filename);
+	std::ofstream file(rootpath + filename);
 	file << j.dump();
 	file.close();
 }

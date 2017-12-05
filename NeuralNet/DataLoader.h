@@ -1,14 +1,17 @@
 #include <vector>
 #include <string>
+#include <chrono> 
+#include <random>
 #include "json.hpp"
+
 using json = nlohmann::json;
-using namespace std;
+
 #pragma once
 
 struct file {
-	string label;
-	vector<double> pose;
-	string filepath;
+	std::string label;
+	std::vector<double> pose;
+	std::string filepath;
 };
 
 class DataLoader
@@ -16,12 +19,15 @@ class DataLoader
 public:
 	DataLoader();
 	~DataLoader();
+
 	file LoadRandom();
-	vector<vector<double>> GetTopology();
-	void SaveTopology(vector<vector<double>> topology, wstring filename = L"topology.json");
-	vector<string> outputs;
+	void Load(std::vector<file> &testSet, std::vector<file> &trainingSet);
+	std::vector<std::vector<double>> GetTopology();
+	void SaveTopology(std::vector<std::vector<double>> topology, std::wstring filename = L"topology.json");
+	std::vector<std::string> outputs;
 private:
 	void throughDirs();
-	json RandomFile(string folder);
+	std::vector<std::string> LoadFiles(std::string folder);
+	json RandomFile(std::string folder);
 };
 
