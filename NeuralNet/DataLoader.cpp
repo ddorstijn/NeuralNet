@@ -94,6 +94,12 @@ file DataLoader::LoadRandom()
 		std::vector<double>(),
 		j["filepath"].get<std::string>(),
 	};
+	std::cout << "Size pose:: " << j["pose"].size() << std::endl;
+	if (j["pose"].size() != 36) {
+		std::cout << "=== ERROR in file, pose points does not equal 36. There is likely more than 1 person in the file (" << j["pose"].size() / 36 << " people detected)" << std::endl;
+		std::cout << "=== Loading other file" << std::endl;
+		return LoadRandom();
+	}
 	for (json::iterator it = j["pose"].begin(); it != j["pose"].end(); ++it) {
 		f.pose.push_back(it->get<double>());
 	}
